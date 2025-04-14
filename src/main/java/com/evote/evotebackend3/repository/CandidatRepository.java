@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface CandidatRepository extends JpaRepository<Candidat, Long> {
-    //Object findByElectionId(long l);
-    //List<Candidat> findByElectionId(Long election);
+
 }
