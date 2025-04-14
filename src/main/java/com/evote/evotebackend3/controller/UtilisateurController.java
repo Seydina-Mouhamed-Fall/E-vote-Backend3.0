@@ -73,10 +73,10 @@ public class UtilisateurController {
     }
 
     //  Obtenir le classement d’une élection
-//    @GetMapping("/classement/{idElection}")
-//    public ResponseEntity<List<Resultat>> getClassementDesCandidats(@PathVariable Long idElection) {
-//        return ResponseEntity.ok(resultatService.obtenirClassementDesCandidats(idElection));
-//    }
+    @GetMapping("/classement/{idElection}")
+    public ResponseEntity<List<Resultat>> getClassementDesCandidats(@PathVariable Long idElection) {
+        return ResponseEntity.ok(resultatService.obtenirClassementDesCandidats(idElection));
+    }
 
     // Lister toutes les élections
     @GetMapping("/elections")

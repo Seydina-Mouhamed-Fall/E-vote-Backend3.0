@@ -57,10 +57,10 @@ public class ResultatService {
         return resultatRepository.findByCandidat_Id(idCandidat);
     }
 
-//
-//    public List<Resultat> obtenirClassementDesCandidats(Long idElection) {
-//        return resultatRepository.findByElection_IdElectionOrderByNombreVoixDesc(idElection);
-//    }
+
+    public List<Resultat> obtenirClassementDesCandidats(Long idElection) {
+        return resultatRepository.findByElection_IdOrderByNombreVoixDesc(idElection);
+    }
 
 
     public double calculerTauxParticipation(Long idElection) {

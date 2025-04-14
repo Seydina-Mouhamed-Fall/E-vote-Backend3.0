@@ -92,9 +92,9 @@ public class ElecteurController {
         return resultatService.obtenirResultatsParCandidat(idCandidat);
     }
 
-//    // Classement des candidats pour une élection
-//    @GetMapping("/resultats/election/{idElection}/classement")
-//    public List<Resultat> obtenirClassementDesCandidats(@PathVariable Long idElection) {
-//        return resultatService.obtenirClassementDesCandidats(idElection);
-//    }
+    // Classement des candidats pour une élection
+    @GetMapping("/resultats/election/{idElection}/classement")
+    public List<Resultat> obtenirClassementDesCandidats(@PathVariable Long idElection) {
+        return resultatService.obtenirClassementDesCandidats(idElection);
+    }
 }

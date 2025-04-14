@@ -86,10 +86,10 @@ public class CandidatController {
 
     // === [ANALYSE] ===
 
-//    @GetMapping("/election/{idElection}/classement")
-//    public ResponseEntity<List<Resultat>> obtenirClassement(@PathVariable Long idElection) {
-//        return ResponseEntity.ok(resultatService.obtenirClassementDesCandidats(idElection));
-//    }
+    @GetMapping("/election/{idElection}/classement")
+    public ResponseEntity<List<Resultat>> obtenirClassement(@PathVariable Long idElection) {
+        return ResponseEntity.ok(resultatService.obtenirClassementDesCandidats(idElection));
+    }
 
     @GetMapping("/election/{idElection}/validite")
     public ResponseEntity<Boolean> verifierValiditeResultats(@PathVariable Long idElection) {

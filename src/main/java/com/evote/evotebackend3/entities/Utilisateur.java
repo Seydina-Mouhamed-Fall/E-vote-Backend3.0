@@ -89,12 +89,12 @@ public abstract class Utilisateur {
         this.dateInscription = dateInscription;
     }
 
-    // 🔹 Méthode utilitaire
+    //  Méthode utilitaire
     public String getNomComplet() {
         return nom + " " + prenom;
     }
 
-    // 🔹 Méthode pour authentifier l'utilisateur
+    //  Méthode pour authentifier l'utilisateur
     public boolean sAuthentifier(String email, String motDePasse) {
         return this.email.equals(email) && this.motDePasse.equals(motDePasse);
     }

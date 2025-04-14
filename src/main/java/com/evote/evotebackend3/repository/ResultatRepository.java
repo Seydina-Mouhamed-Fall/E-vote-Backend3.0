@@ -34,4 +34,6 @@ public interface ResultatRepository extends JpaRepository<Resultat, Long> {
 
     // Récupérer les résultats d'une élection par son ID
     List<Resultat> findByElection_Id(Long idElection);
+    List<Resultat> findByElection_IdOrderByNombreVoixDesc(Long id);
+
 }
