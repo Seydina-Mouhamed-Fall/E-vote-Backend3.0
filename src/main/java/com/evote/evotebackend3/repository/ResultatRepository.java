@@ -9,5 +9,7 @@ import java.util.List;
 @Repository
 public interface ResultatRepository extends JpaRepository<Resultat, Long> {
     List<Resultat> findByCandidatId(Long idCandidat);
+    List<Resultat> findByElectionIdOrderByNombreVoixDesc(Long idElection);
+    List<Resultat> findByElectionId(Long idElection);
 
 }

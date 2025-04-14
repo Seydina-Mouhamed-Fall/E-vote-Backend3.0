@@ -72,4 +72,14 @@ public class ElectionCandidat {
     public void setElection(Election election) {
         this.election = election;
     }
+
+    public void mettreAjourStatut() {
+        // Exemple simple : si le candidat a au moins 1 vote, il devient "actif"
+        if (this.nombreDeVotes > 0) {
+            this.statutCandidat = true;
+        } else {
+            this.statutCandidat = false;
+        }
+    }
+
 }

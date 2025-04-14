@@ -55,5 +55,29 @@ public class ResultatService {
     public List<Resultat> obtenirResultatsParCandidat(Long idCandidat) {
         return resultatRepository.findByCandidatId(idCandidat);
     }
+
+    public List<Resultat> obtenirClassementDesCandidats(Long idElection) {
+        return resultatRepository.findByElectionIdOrderByNombreVoixDesc(idElection);
+    }
+
+    public double calculerTauxParticipation(Long idElection) {
+        List<Resultat> resultats = resultatRepository.findByElectionId(idElection);
+
+        int totalVotes = resultats.stream()
+            .mapToInt(Resultat::getNombreVoix)
+            .sum();
+
+        int totalElecteurs = resultats.isEmpty() ? 0 : resultats.get(0).getTotalVotes(); // Assumons que chaque résultat contient totalVotes identique
+
+        if (totalElecteurs == 0) return 0.0;
+
+        return ((double) totalVotes / totalElecteurs) * 100;
+    }
+
+    public boolean verifierSiResultatsValides(Long idElection) {
+        List<Resultat> resultats = resultatRepository.findByElectionId(idElection);
+        return resultats.stream().allMatch(Resultat::getStatutValidation);
+    }
+
 }
 
