@@ -1,12 +1,12 @@
 package com.evote.evotebackend3.services;
 
-
 import com.evote.evotebackend3.entities.*;
 import com.evote.evotebackend3.repository.AdministrateurRepository;
 import com.evote.evotebackend3.repository.ElectionRepository;
 import com.evote.evotebackend3.repository.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,33 +15,38 @@ import java.util.Optional;
 @Service
 public class AdministrateurService {
 
-    @Autowired
-    private AdministrateurRepository administrateurRepository;
+    // ON INJECTE LES BEANS PAR CONSTRUCTEUR
+    private final AdministrateurRepository administrateurRepository;
+    private final ElectionService electionService;
+    private final CandidatService candidatService;
+    private final ElecteurService electeurService;
+    private final ResultatService resultatService;
+    private final VoteService voteService;
+    private final ElectionCandidatService electionCandidatService;
+    private final ElectionRepository electionRepository;
+    private final UtilisateurService utilisateurService;
 
-    @Autowired
-    private ElectionService electionService;
-
-    @Autowired
-    private CandidatService candidatService;
-
-    @Autowired
-    private ElecteurService electeurService;
-
-    @Autowired
-    private ResultatService resultatService;
-
-    @Autowired
-    private VoteService voteService;
-
-    @Autowired
-    private ElectionCandidatService electionCandidatService;
-
-    @Autowired
-    private ElectionRepository electionRepository;
-
-    @Autowired
-    private UtilisateurService utilisateurService;
-
+    public AdministrateurService(
+        AdministrateurRepository administrateurRepository,
+        ElectionService electionService,
+        CandidatService candidatService,
+        ElecteurService electeurService,
+        ResultatService resultatService,
+        VoteService voteService,
+        ElectionCandidatService electionCandidatService,
+        ElectionRepository electionRepository,
+        UtilisateurService utilisateurService
+    ) {
+        this.administrateurRepository = administrateurRepository;
+        this.electionService = electionService;
+        this.candidatService = candidatService;
+        this.electeurService = electeurService;
+        this.resultatService = resultatService;
+        this.voteService = voteService;
+        this.electionCandidatService = electionCandidatService;
+        this.electionRepository = electionRepository;
+        this.utilisateurService = utilisateurService;
+    }
 
 
     // ==================== GESTION ADMINISTRATEUR ====================
@@ -384,115 +389,6 @@ public class AdministrateurService {
             .orElseThrow(() -> new RuntimeException("Candidat introuvable avec l'ID : " + idCandidat));
         return voteService.compterVotesPourCandidat(candidat);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

@@ -30,6 +30,7 @@ public class VoteService {
     private final ElectionCandidatRepository electionCandidatRepository;
     private final ElecteurService electeurService;
 
+
     @Autowired
     public VoteService(VoteRepository voteRepository,
                        CandidatRepository candidatRepository,
@@ -43,32 +44,32 @@ public class VoteService {
         this.electeurService = electeurService;
     }
 
-    @Transactional
-    public Vote enregistrerVote(Long electeurId, Long electionCandidatId, String choix) {
-        Electeur electeur = findElecteurById(electeurId);
-        ElectionCandidat electionCandidat = findElectionCandidatById(electionCandidatId);
 
-        if (!electeurService.estEligiblePourVoter(electeurId)) {
-            throw new RuntimeException(MESSAGE_ELECTEUR_NON_ELIGIBLE);
+        @Transactional
+        public Vote enregistrerEtValiderVote(Long electeurId, Long electionCandidatId, String choix) {
+            Electeur electeur = electeurRepository.findById(electeurId)
+                .orElseThrow(() -> new RuntimeException("Électeur non trouvé avec l’ID : " + electeurId));
+
+            ElectionCandidat electionCandidat = electionCandidatRepository.findById(electionCandidatId)
+                .orElseThrow(() -> new RuntimeException("Élection-Candidat non trouvé avec l’ID : " + electionCandidatId));
+
+            if (!electeurService.estEligiblePourVoter(electeurId)) {
+                throw new RuntimeException(MESSAGE_ELECTEUR_NON_ELIGIBLE);
+            }
+
+            Vote vote = new Vote();
+            vote.setElecteur(electeur);
+            vote.setElectionCandidat(electionCandidat);
+            vote.setChoix(choix);
+            vote.setDateVote(new Date());
+            vote.setStatutVote(true); // Validation directe
+
+            Vote voteEnregistre = voteRepository.save(vote);
+
+            electeurService.marquerCommeAyantVote(electeurId);
+
+            return voteEnregistre;
         }
-
-        Vote vote = new Vote();
-        vote.setElecteur(electeur);
-        vote.setElectionCandidat(electionCandidat);
-        vote.setChoix(choix);
-        vote.setDateVote(new Date());
-        vote.setStatutVote(false);
-
-        return voteRepository.save(vote);
-    }
-
-    @Transactional
-    public void validerVote(Long voteId) {
-        Vote vote = findVoteById(voteId);
-        vote.setStatutVote(true);
-        voteRepository.save(vote);
-        electeurService.marquerCommeAyantVote(vote.getElecteur().getIdUtilisateur());
-    }
 
     @Transactional
     public void rejeterVote(Long voteId) {

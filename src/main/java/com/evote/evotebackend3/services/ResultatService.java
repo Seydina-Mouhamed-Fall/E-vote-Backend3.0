@@ -53,11 +53,11 @@ public class ResultatService {
 
     // Recommandé si relation avec Candidat
     public List<Resultat> obtenirResultatsParCandidat(Long idCandidat) {
-        return resultatRepository.findByCandidatId(idCandidat);
+        return resultatRepository.findByCandidat(idCandidat);
     }
 
     public List<Resultat> obtenirClassementDesCandidats(Long idElection) {
-        return resultatRepository.findByElectionIdOrderByNombreVoixDesc(idElection);
+        return resultatRepository.findByElection_IdOrderByNombreVoixDesc(idElection);
     }
 
     public double calculerTauxParticipation(Long idElection) {

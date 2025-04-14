@@ -24,7 +24,7 @@ public class Election {
     private Date dateDebut;
 
     @Column(name = "date_fin")
-    @Temporal(TemporalType.DATE)
+    //@Temporal(TemporalType.DATE)
     private LocalDateTime dateFin;
 
     @Column(name = "cloturee", nullable =  false)

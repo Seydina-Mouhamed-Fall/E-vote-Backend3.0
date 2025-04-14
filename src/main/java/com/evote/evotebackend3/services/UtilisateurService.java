@@ -13,8 +13,12 @@ import java.util.Optional;
 @Service
 public class UtilisateurService {
 
-    @Autowired
-    private UtilisateurRepository utilisateurRepository;
+
+    private final UtilisateurRepository utilisateurRepository;
+
+    public UtilisateurService(UtilisateurRepository utilisateurRepository) {
+        this.utilisateurRepository = utilisateurRepository;
+    }
 
     // Création ou mise à jour d'un utilisateur (création ou modification)
     @Transactional
