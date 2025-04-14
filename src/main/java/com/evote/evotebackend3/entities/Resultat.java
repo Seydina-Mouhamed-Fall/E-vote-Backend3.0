@@ -64,7 +64,7 @@ public class Resultat {
         this.totalVotes = totalVotes;
     }
 
-    public boolean isStatutValidation() {
+    public boolean getStatutValidation() {
         return statutValidation;
     }
 
