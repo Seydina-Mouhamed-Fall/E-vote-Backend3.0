@@ -306,50 +306,84 @@ public class AdministrateurService {
 
     // ============================= GESTION UTILISATEUR ==========================
 
-    // ✅ Obtenir tous les utilisateurs
+    //  Obtenir tous les utilisateurs
     public List<Utilisateur> obtenirTousLesUtilisateursParAdministrateur(Long idAdministrateur) {
         verifierAdministrateurExistant(idAdministrateur);
         return utilisateurService.obtenirTousLesUtilisateurs();
     }
 
-    // ✅ Obtenir un utilisateur par ID
+    //  Obtenir un utilisateur par ID
     public Optional<Utilisateur> obtenirUtilisateurParIdParAdministrateur(Long idAdministrateur, Long idUtilisateur) {
         verifierAdministrateurExistant(idAdministrateur);
         return utilisateurService.obtenirUtilisateurParId(idUtilisateur);
     }
 
-    // ✅ Obtenir un utilisateur par email
+    //  Obtenir un utilisateur par email
     public Optional<Utilisateur> obtenirUtilisateurParEmailParAdministrateur(Long idAdministrateur, String email) {
         verifierAdministrateurExistant(idAdministrateur);
         return utilisateurService.obtenirUtilisateurParEmail(email);
     }
 
-    // ✅ Mettre à jour un utilisateur
+    // Mettre à jour un utilisateur
     public Utilisateur mettreAJourUtilisateurParAdministrateur(Long idAdministrateur, Long idUtilisateur, Utilisateur utilisateurDetails) {
         verifierAdministrateurExistant(idAdministrateur);
         return utilisateurService.mettreAJourUtilisateur(idUtilisateur, utilisateurDetails);
     }
 
-    // ✅ Supprimer un utilisateur
+    //  Supprimer un utilisateur
     public void supprimerUtilisateurParAdministrateur(Long idAdministrateur, Long idUtilisateur) {
         verifierAdministrateurExistant(idAdministrateur);
         utilisateurService.supprimerUtilisateur(idUtilisateur);
     }
 
-    // ✅ Authentifier un utilisateur (utile si l’admin veut tester un accès par email/mot de passe)
+    // Authentifier un utilisateur (utile si l’admin veut tester un accès par email/mot de passe)
     public boolean authentifierUtilisateurParAdministrateur(Long idAdministrateur, String email, String motDePasse) {
         verifierAdministrateurExistant(idAdministrateur);
         return utilisateurService.authentifierUtilisateur(email, motDePasse);
     }
 
-    // ✅ Gérer une demande de support pour un utilisateur
+    //  Gérer une demande de support pour un utilisateur
     public void traiterDemandeSupportParAdministrateur(Long idAdministrateur, String email, String message) {
         verifierAdministrateurExistant(idAdministrateur);
         utilisateurService.demanderSupport(email, message);
     }
 
+    //====================================== GESTION VOTE ==========================================
+
+    //  Lister tous les votes
+    public List<Vote> obtenirTousLesVotesParAdministrateur(Long idAdministrateur) {
+        verifierAdministrateurExistant(idAdministrateur);
+        return voteService.listerTousLesVotes();
+    }
+
+    //  Obtenir un vote par son ID
+    public Optional<Vote> obtenirVoteParIdParAdministrateur(Long idAdministrateur, Long voteId) {
+        verifierAdministrateurExistant(idAdministrateur);
+        return voteService.obtenirVoteParId(voteId);
+    }
 
 
+    //  Vérifier si un électeur peut voter
+    public boolean verifierEligibiliteVoteParAdministrateur(Long idAdministrateur, Long electeurId, Long electionCandidatId) {
+        verifierAdministrateurExistant(idAdministrateur);
+        return voteService.peutVoter(electeurId, electionCandidatId);
+    }
+
+    //  Afficher tous les votes d’un électeur
+    public List<Vote> obtenirVotesParElecteurParAdministrateur(Long idAdministrateur, Long idElecteur) {
+        verifierAdministrateurExistant(idAdministrateur);
+        Electeur electeur = electeurService.trouverElecteurParId(idElecteur)
+            .orElseThrow(() -> new RuntimeException("Électeur introuvable avec l'ID : " + idElecteur));
+        return voteService.afficherVotesElecteur(electeur);
+    }
+
+    //  Compter les votes pour un candidat
+    public long compterVotesPourCandidatParAdministrateur(Long idAdministrateur, Long idCandidat) {
+        verifierAdministrateurExistant(idAdministrateur);
+        Candidat candidat = candidatService.obtenirCandidat(idCandidat)
+            .orElseThrow(() -> new RuntimeException("Candidat introuvable avec l'ID : " + idCandidat));
+        return voteService.compterVotesPourCandidat(candidat);
+    }
 
 
 
