@@ -8,7 +8,7 @@ public class ElectionCandidat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idElectionCandidat;
+    private Long id; // Avant : idElectionCandidat
 
     @Column(nullable = false)
     private int nombreDeVotes;
@@ -17,13 +17,16 @@ public class ElectionCandidat {
     private boolean statutCandidat;
 
     @ManyToOne
-    @JoinColumn(name = "idCandidat", nullable = false)
+    @JoinColumn(name = "id_candidat", nullable = false) // Harmonisé pour la base
     private Candidat candidat;
 
     @ManyToOne
-    @JoinColumn(name = "idElection", nullable = false)
+    @JoinColumn(name = "id_election", nullable = false) // Harmonisé pour la base
     private Election election;
 
+    // ============================
+    // Constructeurs
+    // ============================
     public ElectionCandidat() {}
 
     public ElectionCandidat(int nombreDeVotes, boolean statutCandidat, Candidat candidat, Election election) {
@@ -33,12 +36,15 @@ public class ElectionCandidat {
         this.election = election;
     }
 
-    public long getIdElectionCandidat() {
-        return idElectionCandidat;
+    // ============================
+    // Getters & Setters
+    // ============================
+    public Long getId() {
+        return id;
     }
 
-    public void setIdElectionCandidat(long idElectionCandidat) {
-        this.idElectionCandidat = idElectionCandidat;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public int getNombreDeVotes() {
@@ -74,12 +80,6 @@ public class ElectionCandidat {
     }
 
     public void mettreAjourStatut() {
-        // Exemple simple : si le candidat a au moins 1 vote, il devient "actif"
-        if (this.nombreDeVotes > 0) {
-            this.statutCandidat = true;
-        } else {
-            this.statutCandidat = false;
-        }
+        this.statutCandidat = this.nombreDeVotes > 0;
     }
-
 }

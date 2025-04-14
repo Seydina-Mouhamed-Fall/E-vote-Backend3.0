@@ -9,16 +9,17 @@ public class Vote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idSessionVote;
+    @Column(name = "id_session_vote")
+    private Long id;
 
-    @Column(name = "choix",nullable = false)
+    @Column(name = "choix", nullable = false)
     private String choix;
 
-    @Column(name = "date_vote",nullable = false)
+    @Column(name = "date_vote", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dateVote;
 
-    @Column(name = "statut_vote",nullable = false)
+    @Column(name = "statut_vote", nullable = false)
     private boolean statutVote;
 
     @ManyToOne
@@ -29,24 +30,20 @@ public class Vote {
     @JoinColumn(name = "election_candidat_id")
     private ElectionCandidat electionCandidat;
 
-    // Constructeur vide requis par JPA
+    // 🔹 Constructeur vide requis par JPA
     public Vote() {}
 
-    // Constructeur utile si besoin de créer un vote en une ligne
+    // 🔹 Constructeur utile pour initialisation rapide
     public Vote(String choix, Date dateVote, boolean statutVote) {
         this.choix = choix;
         this.dateVote = dateVote;
         this.statutVote = statutVote;
     }
 
-    // Getters et Setters
-    public long getIdSessionVote() {
-        return idSessionVote;
+    // Getters / Setters
+    public Long getId() {
+        return id;
     }
-
-//    public void setIdSessionVote(long idSessionVote) {
-//        this.idSessionVote = idSessionVote;
-//    }
 
     public String getChoix() {
         return choix;

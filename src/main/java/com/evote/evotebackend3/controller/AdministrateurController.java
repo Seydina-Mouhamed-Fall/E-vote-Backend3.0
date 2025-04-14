@@ -243,10 +243,10 @@ public class AdministrateurController {
         return administrateurService.obtenirResultatsParCandidatParAdministrateur(idAdministrateur, idCandidat);
     }
 
-    @GetMapping("/{idAdministrateur}/resultats/election/{idElection}/classement")
-    public List<Resultat> getClassementCandidats(@PathVariable Long idAdministrateur, @PathVariable Long idElection) {
-        return administrateurService.obtenirClassementDesCandidatsParAdministrateur(idAdministrateur, idElection);
-    }
+//    @GetMapping("/{idAdministrateur}/resultats/election/{idElection}/classement")
+//    public List<Resultat> getClassementCandidats(@PathVariable Long idAdministrateur, @PathVariable Long idElection) {
+//        return administrateurService.obtenirClassementDesCandidatsParAdministrateur(idAdministrateur, idElection);
+//    }
 
     @GetMapping("/{idAdministrateur}/resultats/election/{idElection}/taux-participation")
     public double getTauxParticipation(@PathVariable Long idAdministrateur, @PathVariable Long idElection) {

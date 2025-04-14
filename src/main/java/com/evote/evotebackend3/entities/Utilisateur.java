@@ -11,7 +11,7 @@ public abstract class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_utilisateur")
-    private Long idUtilisateur;
+    private Long id;  // Renommé de idUtilisateur → id
 
     @Column(name = "nom", nullable = false)
     private String nom;
@@ -40,13 +40,13 @@ public abstract class Utilisateur {
         this.dateInscription = dateInscription;
     }
 
-    // Getters / Setters simples
-    public Long getIdUtilisateur() {
-        return idUtilisateur;
+    // Getters / Setters
+    public Long getId() {
+        return id;
     }
 
-    public void setIdUtilisateur(Long idUtilisateur) {
-        this.idUtilisateur = idUtilisateur;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -89,20 +89,17 @@ public abstract class Utilisateur {
         this.dateInscription = dateInscription;
     }
 
-    // Méthode utilitaire
+    // 🔹 Méthode utilitaire
     public String getNomComplet() {
         return nom + " " + prenom;
     }
 
-    // Méthode pour authentifier l'utilisateur
+    // 🔹 Méthode pour authentifier l'utilisateur
     public boolean sAuthentifier(String email, String motDePasse) {
-        // Vérifier si l'email et le mot de passe correspondent
         return this.email.equals(email) && this.motDePasse.equals(motDePasse);
     }
 
     public void demanderSupport(String message) {
         System.out.println("Demande de support de l'utilisateur " + this.email + " : " + message);
-        // Tu peux aussi logguer ou envoyer ce message à un service de support plus tard
     }
-
 }

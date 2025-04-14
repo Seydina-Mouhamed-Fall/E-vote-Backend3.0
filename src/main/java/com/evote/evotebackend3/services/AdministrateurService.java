@@ -292,10 +292,10 @@ public class AdministrateurService {
     }
 
     //  Obtenir le classement des candidats d’une élection
-    public List<Resultat> obtenirClassementDesCandidatsParAdministrateur(Long idAdministrateur, Long idElection) {
-        verifierAdministrateurExistant(idAdministrateur);
-        return resultatService.obtenirClassementDesCandidats(idElection);
-    }
+//    public List<Resultat> obtenirClassementDesCandidatsParAdministrateur(Long idAdministrateur, Long idElection) {
+//        verifierAdministrateurExistant(idAdministrateur);
+//        return resultatService.obtenirClassementDesCandidats(idElection);
+//    }
 
     //  Calculer le taux de participation d’une élection
     public double calculerTauxParticipationParAdministrateur(Long idAdministrateur, Long idElection) {

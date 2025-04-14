@@ -1,9 +1,7 @@
 package com.evote.evotebackend3.entities;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +12,7 @@ public class Election {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idElection;
+    private Long id;
 
     @Column(name = "nom", nullable = false)
     private String nom;
@@ -24,22 +22,19 @@ public class Election {
     private Date dateDebut;
 
     @Column(name = "date_fin")
-    //@Temporal(TemporalType.DATE)
     private LocalDateTime dateFin;
 
-    @Column(name = "cloturee", nullable =  false)
+    @Column(name = "cloturee", nullable = false)
     private boolean cloturee;
 
-    // Relation directe pour accéder aux candidats (convenance)
     @ManyToMany
     @JoinTable(
         name = "election_candidat",
-        joinColumns = @JoinColumn(name = "idElection"),
-        inverseJoinColumns = @JoinColumn(name = "idCandidat")
+        joinColumns = @JoinColumn(name = "id_election"),
+        inverseJoinColumns = @JoinColumn(name = "id_candidat")
     )
     private List<Candidat> candidats = new ArrayList<>();
 
-    // Relation avec l'entité d'association ElectionCandidat (relation métier)
     @OneToMany(mappedBy = "election", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ElectionCandidat> electionCandidats = new ArrayList<>();
 
@@ -48,7 +43,7 @@ public class Election {
     // ===========================
     public Election() {}
 
-    public Election(String nom, Date dateDebut, LocalDateTime dateFin,boolean cloturee) {
+    public Election(String nom, Date dateDebut, LocalDateTime dateFin, boolean cloturee) {
         this.nom = nom;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
@@ -66,8 +61,8 @@ public class Election {
     // ===========================
     // Getters & Setters
     // ===========================
-    public long getIdElection() {
-        return idElection;
+    public Long getId() {
+        return id;
     }
 
     public String getNom() {
@@ -86,9 +81,8 @@ public class Election {
         this.dateDebut = dateDebut;
     }
 
-
     public LocalDateTime getDateFin() {
-        return this.dateFin;
+        return dateFin;
     }
 
     public void setDateFin(LocalDateTime dateFin) {

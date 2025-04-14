@@ -51,17 +51,20 @@ public class ResultatService {
         });
     }
 
+
     // Recommandé si relation avec Candidat
     public List<Resultat> obtenirResultatsParCandidat(Long idCandidat) {
-        return resultatRepository.findByCandidat(idCandidat);
+        return resultatRepository.findByCandidat_Id(idCandidat);
     }
 
-    public List<Resultat> obtenirClassementDesCandidats(Long idElection) {
-        return resultatRepository.findByElection_IdOrderByNombreVoixDesc(idElection);
-    }
+//
+//    public List<Resultat> obtenirClassementDesCandidats(Long idElection) {
+//        return resultatRepository.findByElection_IdElectionOrderByNombreVoixDesc(idElection);
+//    }
+
 
     public double calculerTauxParticipation(Long idElection) {
-        List<Resultat> resultats = resultatRepository.findByElectionId(idElection);
+        List<Resultat> resultats = resultatRepository.findByElection_Id(idElection);
 
         int totalVotes = resultats.stream()
             .mapToInt(Resultat::getNombreVoix)
@@ -75,7 +78,7 @@ public class ResultatService {
     }
 
     public boolean verifierSiResultatsValides(Long idElection) {
-        List<Resultat> resultats = resultatRepository.findByElectionId(idElection);
+        List<Resultat> resultats = resultatRepository.findByElection_Id(idElection);
         return resultats.stream().allMatch(Resultat::getStatutValidation);
     }
 
