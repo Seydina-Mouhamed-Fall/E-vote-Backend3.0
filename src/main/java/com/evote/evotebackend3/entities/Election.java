@@ -11,6 +11,7 @@ import java.util.List;
 public class Election {
 
     @Id
+    @Column(name = "id_election")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -18,8 +19,8 @@ public class Election {
     private String nom;
 
     @Column(name = "date_debut")
-    @Temporal(TemporalType.DATE)
-    private Date dateDebut;
+    //@Temporal(TemporalType.DATE)
+    private LocalDateTime dateDebut;
 
     @Column(name = "date_fin")
     private LocalDateTime dateFin;
@@ -43,7 +44,8 @@ public class Election {
     // ===========================
     public Election() {}
 
-    public Election(String nom, Date dateDebut, LocalDateTime dateFin, boolean cloturee) {
+    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings("EI_EXPOSE_REP2")
+    public Election(String nom, LocalDateTime dateDebut, LocalDateTime dateFin, boolean cloturee) {
         this.nom = nom;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
@@ -54,9 +56,9 @@ public class Election {
         this.nom = nom;
     }
 
-    public Election(String s, String date, String date1, boolean b) {
-        // À compléter si nécessaire
-    }
+//    public Election(String s, String date, String date1, boolean b) {
+//        // À compléter si nécessaire
+//    }
 
     // ===========================
     // Getters & Setters
@@ -73,11 +75,11 @@ public class Election {
         this.nom = nom;
     }
 
-    public Date getDateDebut() {
+    public LocalDateTime getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(Date dateDebut) {
+    public void setDateDebut(LocalDateTime dateDebut) {
         this.dateDebut = dateDebut;
     }
 

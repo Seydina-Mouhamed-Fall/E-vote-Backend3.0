@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ElectionRepository extends JpaRepository<Election, Long> {
-//    List<Election> findByEnCours(boolean b);
-    // Tu peux ajouter des méthodes personnalisées si nécessaire
+
 }
