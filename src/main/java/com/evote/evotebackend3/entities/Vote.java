@@ -84,4 +84,8 @@ public class Vote {
     public void setElectionCandidat(ElectionCandidat electionCandidat) {
         this.electionCandidat = electionCandidat;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
