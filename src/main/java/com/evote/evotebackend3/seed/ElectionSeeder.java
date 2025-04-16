@@ -1,3 +1,4 @@
+/*
 package com.evote.evotebackend3.seed;
 
 import com.evote.evotebackend3.entities.Election;
@@ -52,6 +53,6 @@ public class ElectionSeeder implements CommandLineRunner {
         }
     }
 }
-
+*/
 
 

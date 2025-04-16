@@ -9,6 +9,7 @@ public class Resultat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_resultat", nullable = false)
     private Long id; // Avant : idResultat
 
     @Column(name = "total_votes", nullable = false)

@@ -77,7 +77,7 @@ public class AdministrateurController {
 
     // ==================== GESTION CANDIDATS ====================
 
-    @PostMapping("/{idAdministrateur}/candidats")
+    @PostMapping("/{idAdministrateur}/candidats") ///(200Ok)
     public Candidat ajouterCandidat(@PathVariable Long idAdministrateur, @RequestBody Candidat candidat) {
         return administrateurService.ajouterCandidatParAdministrateur(idAdministrateur, candidat);
     }

@@ -1,4 +1,4 @@
-
+/*
 package com.evote.evotebackend3.seed;
 
 import com.evote.evotebackend3.entities.Electeur;
@@ -115,3 +115,4 @@ public class ElecteurSeeder implements CommandLineRunner {
     }
 }
 
+*/

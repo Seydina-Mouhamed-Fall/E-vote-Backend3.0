@@ -27,12 +27,12 @@ public class ElecteurController {
     // ============================
 
     // READ : Lister tous les électeurs
-    @GetMapping
+    @GetMapping // (200OK)
     public List<Electeur> listerTousLesElecteurs() {
         return electeurService.listerElecteurs();
     }
 
-    // UPDATE : Modifier les infos d’un électeur
+    // UPDATE : Modifier les infos d’un électeur (200OK)
     @PutMapping("/{id}")
     public ResponseEntity<Electeur> modifierElecteur(
         @PathVariable Long id,
@@ -45,7 +45,7 @@ public class ElecteurController {
         }
     }
 
-    // DELETE : Supprimer un électeur
+    // DELETE : Supprimer un électeur (200OK)
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> supprimerElecteur(@PathVariable Long id) {
         try {
@@ -60,7 +60,7 @@ public class ElecteurController {
     // MÉTIER
     // ============================
 
-    // Vérifier si un électeur est éligible pour voter
+    // Vérifier si un électeur est éligible pour voter (200OK)
     @GetMapping("/{id}/eligibilite")
     public ResponseEntity<Boolean> estEligiblePourVoter(@PathVariable Long id) {
         boolean eligible = electeurService.estEligiblePourVoter(id);
@@ -71,14 +71,14 @@ public class ElecteurController {
     // RESULTATS
     // ============================
 
-    // Tous les résultats
+    // Tous les résultats (20OK)
     @GetMapping("/resultats")
     public List<Resultat> obtenirTousLesResultats() {
         return resultatService.obtenirTousLesResultats();
     }
 
 
-    // Résultat par ID
+    // Résultat par ID (200OK)
     @GetMapping("/resultats/{id}")
     public ResponseEntity<Resultat> obtenirResultatParId(@PathVariable Long id) {
         return resultatService.obtenirResultatParId(id)
@@ -86,13 +86,13 @@ public class ElecteurController {
             .orElse(ResponseEntity.notFound().build());
     }
 
-    // Résultats par candidat
+    // Résultats par candidat (200OK)
     @GetMapping("/resultats/candidat/{idCandidat}")
     public List<Resultat> obtenirResultatsParCandidat(@PathVariable Long idCandidat) {
         return resultatService.obtenirResultatsParCandidat(idCandidat);
     }
 
-    // Classement des candidats pour une élection
+    // Classement des candidats pour une élection (200OK)
     @GetMapping("/resultats/election/{idElection}/classement")
     public List<Resultat> obtenirClassementDesCandidats(@PathVariable Long idElection) {
         return resultatService.obtenirClassementDesCandidats(idElection);

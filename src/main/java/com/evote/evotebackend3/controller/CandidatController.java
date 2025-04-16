@@ -25,7 +25,7 @@ public class CandidatController {
 
     // === [ADMIN] ===
 
-    @PostMapping("/voter")
+    @PostMapping("/voter") //(200OK)
     public ResponseEntity<Vote> enregistrerEtValiderVoteParAdmin(
         @RequestParam Long electeurId,
         @RequestParam Long electionCandidatId,
@@ -61,32 +61,15 @@ public class CandidatController {
             .orElse(ResponseEntity.notFound().build());
     }
 
-    // === [ADMIN - Associations Élections] ===
 
-    @PutMapping("/statut/{idElectionCandidat}")
-    public ResponseEntity<ElectionCandidat> mettreAJourStatutCandidat(@PathVariable Long idElectionCandidat) {
-        return ResponseEntity.ok(electionCandidatService.mettreAJourStatut(idElectionCandidat));
-    }
-
-    @DeleteMapping("/associer/{idElectionCandidat}")
-    public ResponseEntity<Void> supprimerAssociation(@PathVariable Long idElectionCandidat) {
-        electionCandidatService.supprimerAssociation(idElectionCandidat);
-        return ResponseEntity.noContent().build();
-    }
-
-    @GetMapping("/associations")
-    public ResponseEntity<List<ElectionCandidat>> listerAssociations() {
-        return ResponseEntity.ok(electionCandidatService.listerToutesLesAssociations());
-    }
-
-    @GetMapping("/{id}/resultats")
+    @GetMapping("/{id}/resultats") //(200OK)
     public ResponseEntity<List<Resultat>> voirSesResultats(@PathVariable Long id) {
         return ResponseEntity.ok(resultatService.obtenirResultatsParCandidat(id));
     }
 
     // === [ANALYSE] ===
 
-    @GetMapping("/election/{idElection}/classement")
+    @GetMapping("/election/{idElection}/classement") //(200OK)
     public ResponseEntity<List<Resultat>> obtenirClassement(@PathVariable Long idElection) {
         return ResponseEntity.ok(resultatService.obtenirClassementDesCandidats(idElection));
     }

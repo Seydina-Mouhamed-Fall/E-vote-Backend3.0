@@ -38,7 +38,7 @@ public class UtilisateurController {
         return ResponseEntity.ok(updated);
     }
 
-    // Supprimer un utilisateur
+    // Supprimer un utilisateur (j'ai pas compris ce que j'ai voulu faire ici ?)
     @DeleteMapping("/{id}")
     public ResponseEntity<?> supprimerUtilisateur(@PathVariable Long id) {
         utilisateurService.supprimerUtilisateur(id);
@@ -52,13 +52,13 @@ public class UtilisateurController {
 //        return ResponseEntity.ok(Map.of("authenticated", isAuth));
 //    }
 
-    //  Obtenir tous les résultats
+    //  Obtenir tous les résultats (200OK)
     @GetMapping("/resultats")
     public ResponseEntity<List<Resultat>> getAllResultats() {
         return ResponseEntity.ok(resultatService.obtenirTousLesResultats());
     }
 
-    //  Obtenir un résultat par ID
+    //  Obtenir un résultat par ID (200OK)
     @GetMapping("/resultats/{id}")
     public ResponseEntity<Resultat> getResultatById(@PathVariable Long id) {
         return resultatService.obtenirResultatParId(id)
@@ -66,25 +66,25 @@ public class UtilisateurController {
             .orElse(ResponseEntity.notFound().build());
     }
 
-    //  Obtenir les résultats d’un candidat
+    //  Obtenir les résultats d’un candidat (200OK)
     @GetMapping("/resultats/candidat/{idCandidat}")
     public ResponseEntity<List<Resultat>> getResultatsParCandidat(@PathVariable Long idCandidat) {
         return ResponseEntity.ok(resultatService.obtenirResultatsParCandidat(idCandidat));
     }
 
-    //  Obtenir le classement d’une élection
+    //  Obtenir le classement d’une élection (200OK)
     @GetMapping("/classement/{idElection}")
     public ResponseEntity<List<Resultat>> getClassementDesCandidats(@PathVariable Long idElection) {
         return ResponseEntity.ok(resultatService.obtenirClassementDesCandidats(idElection));
     }
 
-    // Lister toutes les élections
+    // Lister toutes les élections (200K)
     @GetMapping("/elections")
     public ResponseEntity<List<Election>> listerElections() {
         return ResponseEntity.ok(electionService.listerElections());
     }
 
-    //  Obtenir une élection
+    //  Obtenir une élection (200K)
     @GetMapping("/elections/{id}")
     public ResponseEntity<Election> obtenirElection(@PathVariable Long id) {
         return electionService.obtenirElectionParId(id)
@@ -92,7 +92,7 @@ public class UtilisateurController {
             .orElse(ResponseEntity.notFound().build());
     }
 
-    //  Lister tous les candidats
+    //  Lister tous les candidats (20OK)
     @GetMapping("/candidats")
     public ResponseEntity<List<Candidat>> listerCandidats() {
         return ResponseEntity.ok(candidatService.listerCandidats());
