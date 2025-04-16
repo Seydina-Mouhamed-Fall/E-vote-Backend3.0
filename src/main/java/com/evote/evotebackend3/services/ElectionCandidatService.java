@@ -17,7 +17,7 @@ public class ElectionCandidatService {
     @Autowired
     private ElectionCandidatRepository electionCandidatRepository;
 
-    // ✅ Associer un candidat à une élection (avec création si pas déjà existant)
+    // Associer un candidat à une élection (avec création si pas déjà existant)
     public ElectionCandidat associerCandidatAElection(Election election, Candidat candidat) {
         return electionCandidatRepository.findByElectionAndCandidat(election, candidat)
             .orElseGet(() -> {

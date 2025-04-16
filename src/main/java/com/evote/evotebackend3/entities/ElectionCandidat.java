@@ -79,7 +79,12 @@ public class ElectionCandidat {
         this.election = election;
     }
 
+//    public void mettreAjourStatut() {
+//        this.statutCandidat = this.nombreDeVotes > 0;
+//    }
     public void mettreAjourStatut() {
-        this.statutCandidat = this.nombreDeVotes > 0;
+        this.statutCandidat = true;
     }
+
+
 }
